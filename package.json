@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eruda": "^2.3.3",
     "web-push": "^3.4.4"
   }
 }

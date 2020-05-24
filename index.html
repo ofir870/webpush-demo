@@ -7,9 +7,18 @@
   <body>
   <button onclick="subscribe()">subscribe</button>
   </body>
+  <script src="node_modules/eruda/eruda.min.js"></script>
+  <script>eruda.init();</script>
 
+  
   <script>
+let el = document.createElement('div');
+document.body.appendChild(el);
 
+eruda.init({
+    container: el,
+    tool: ['console', 'elements']
+});
     addEventListener('load', async()=>{
       let sw = await navigator.serviceWorker.register('./sw.js') 
     })
