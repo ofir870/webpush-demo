@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Push Demo</title>
+    <script type="application/javascript" src="/client.js"></script>
+  </head>
+
+  <body>
+  ue  <button onclick="subscribe()">subscribe</button>
+  </body>
+
+  <script>
+
+    addEventListener('load', async()=>{
+      let sw = await navigator.serviceWorker.register('./sw.js') 
+    })
+
+    async function subscribe() {
+      let sw = await navigator.serviceWorker.ready
+      let push =  await sw.pushManager.subscribe({
+         userVisibleOnly:true,
+         applicationServerKey:'BLwVjwga7vDfbyW_zY6ysvTsEZfXacbbG9H-9H7_8JEBd_XgHva_xBMnpEBrXEVWe9jM58ksq_sA0HG9QUHZWOU'
+      })
+      console.log(JSON.stringify(push))
+    }
+  </script>
+</html>
