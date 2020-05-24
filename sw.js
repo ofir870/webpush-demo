@@ -1,22 +1,21 @@
-self.addEventListener('push', function(event) {
-    const analyticsPromise = pushReceivedTracking();
-    const pushInfoPromise = fetch('/api/get-more-data')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(response) {
-        const title = response.data.userName + ' says...';
-        const message = response.data.message;
-  
-        return self.registration.showNotification(title, {
-          body: message
-        });
-      });
-  
-    const promiseChain = Promise.all([
-      analyticsPromise,
-      pushInfoPromise
-    ]);
-  
-    event.waitUntil(promiseChain);
-  });
+self.addEventListener('push', function(e) {
+    var options ={
+
+        body: "this notification was generated a push!",
+        icon: "images/example.png",
+        vibrate: [100,50,100],
+        data: {
+            dateOfArrival: Date.now(),
+            primaryKey:'2'
+        },
+        actions:[
+            {
+                action: 'explore',
+                title: 'Explore this new world',
+                icon: 'images/checkmark.png'
+            },
+            { action: 'close', title: 'Close', icon:'images/xmark.png'}
+        ]
+    } 
+    e.waituntil(self.ServiceWorkerRegistration.showNotification('hello world!', options))
+})
