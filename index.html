@@ -7,24 +7,16 @@
   <body>
   <button onclick="subscribe()">subscribe</button>
   </body>
-  <script src="node_modules/eruda/eruda.min.js"></script>
-  <script>eruda.init();</script>
 
-  
   <script>
-let el = document.createElement('div');
-document.body.appendChild(el);
 
-eruda.init({
-    container: el,
-    tool: ['console', 'elements']
-});
     addEventListener('load', async()=>{
       let sw = await navigator.serviceWorker.register('./sw.js') 
     })
 
     async function subscribe() {
       let sw = await navigator.serviceWorker.ready
+      console.log(sw)
       let push =  await sw.pushManager.subscribe({
          userVisibleOnly:true,
          applicationServerKey:'BLwVjwga7vDfbyW_zY6ysvTsEZfXacbbG9H-9H7_8JEBd_XgHva_xBMnpEBrXEVWe9jM58ksq_sA0HG9QUHZWOU'
@@ -33,4 +25,4 @@ eruda.init({
       console.log(JSON.stringify(push))
     }
   </script>
-</html> 
+</html>
